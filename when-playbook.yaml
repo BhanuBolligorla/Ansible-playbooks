@@ -1,4 +1,4 @@
-ubuntu@ip-172-31-68-149:~$ cat when-playbook.yaml
+ansible all -m  setup | grep ansible_distribution # Command
 ---
 - name: updating system
   hosts: all
