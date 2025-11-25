@@ -1,0 +1,13 @@
+ubuntu@ip-172-31-68-149:~$ cat when-playbook.yaml
+---
+- name: updating system
+  hosts: all
+  become: yes
+  tasks:
+  - name: updating
+    command: yum update -y
+    when: ansible_distribution == "Amazon"
+
+  - name: updating ubuntu system
+    command: apt update -y
+    when: ansible_distribution == "Ubuntu"
