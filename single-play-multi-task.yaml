@@ -1,0 +1,17 @@
+# single-play-multi-task 
+
+---
+- name: creating folder
+  hosts: wb
+  become: yes
+  tasks:
+# This is my first task in single play
+  - name: creating folder
+    file:
+      path: /home/ubuntu/ansible
+      state: directory
+# This is my second task in single play
+  - name: creating file
+    file:
+      path: /home/ubuntu/ansible/f1
+      state: touch
