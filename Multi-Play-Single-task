@@ -1,0 +1,26 @@
+
+# Multi-Play-Single-task
+
+---
+
+# First Play
+
+- name: removing file
+  hosts: wb
+  become: yes
+  tasks:
+  - name: removing wb.txt file
+    file:
+       path: /home/ubuntu/wb.txt
+       state: absent
+
+# Second Play
+
+- name: creating file
+  hosts: db
+  become: yes
+  tasks:
+  - name: Creating db.txt file
+    file:
+       path: /home/ubuntu/db.txt
+       state: touch
