@@ -1,0 +1,11 @@
+# Single Play Single task
+
+---
+- name: creating file
+  hosts: wb
+  become: yes
+  tasks:
+  - name: creating text file
+    file:
+      path: /home/ubuntu/wb.txt
+      state: touch
