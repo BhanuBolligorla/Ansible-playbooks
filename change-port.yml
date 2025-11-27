@@ -1,0 +1,32 @@
+---
+- name: changing port no.
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: change port in ubuntu server
+      replace:
+        path: /etc/apache2/ports.conf
+        regexp: "Listen 80"
+        replace: "Listen 90"
+      when: ansible_distribution == "Ubuntu"
+
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+      when: ansible_distribution == "Ubuntu"
+
+    - name: change port in Amazon server
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: "Listen 80"
+        replace: "Listen 90"
+      when: ansible_distribution == "Amazon"
+
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+      when: ansible_distribution == "Amazon"
