@@ -1,0 +1,11 @@
+---
+- name: static app
+  hosts: all
+  become: yes
+  vars:
+    bhanu: K.L.Rahul
+  tasks:
+  - name: deploying app
+    template:
+      src: /home/ubuntu/index.j2
+      dest: /var/www/html/index.html
