@@ -1,0 +1,22 @@
+---
+- name: Install the apache2 and nginx
+  hosts: all
+  become: yes
+ 
+  tasks:
+    - name: Install the Apache2
+      package:
+        name: "{item.tool}"
+        state: present
+      when: ansible_distribution == "{item.distribution}"
+      loop:
+        - {tool: "httpd", distribution: "Amazon"}
+        - {tool: "apache2", distribution: "Ubuntu"}
+ 
+    - name: Starting tools
+      service:
+        name: "{item.web}"
+      when: ansible_distribution == "{distro}"
+      loop:
+        - {web: "httpd", distro: "Amazon", state: "started"}
+        - {web: "apache2", distro: "Ubuntu", state: "started"}
